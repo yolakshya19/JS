@@ -29,9 +29,11 @@ newBtn.addEventListener("click", resetGame);
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (turn0) {
+      box.style.color = "#7DBBC3";
       box.innerText = "O";
       turn0 = false;
     } else {
+      box.style.color = "#DAEDBD";
       box.innerText = "X";
       turn0 = true;
     }
