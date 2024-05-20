@@ -5,6 +5,7 @@ let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 
 let turn0 = true;
+let count = 0;
 
 const winnings = [
   [0, 1, 2],
@@ -18,6 +19,7 @@ const winnings = [
 ];
 
 const resetGame = () => {
+  count = 0;
   turn0 = true;
   enableBoxes();
   msgContainer.classList.add("hide");
@@ -29,7 +31,7 @@ newBtn.addEventListener("click", resetGame);
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (turn0) {
-      box.style.color = "#7DBBC3";
+      box.style.color = "#DE6B48";
       box.innerText = "O";
       turn0 = false;
     } else {
@@ -39,6 +41,8 @@ boxes.forEach((box) => {
     }
     box.disabled = true;
     checkWinner();
+    count++;
+    checkCount(count);
   });
 });
 
@@ -73,4 +77,12 @@ const showWinner = (winner) => {
   msg.innerText = `CONGRATULATIONS!!!! Winner is ${winner}`;
   msgContainer.classList.remove("hide");
   disableBoxes();
+};
+
+const checkCount = (count) => {
+  if (count === 9) {
+    msg.innerText = `IT'S A DRAW`;
+    msgContainer.classList.remove("hide");
+    disableBoxes();
+  }
 };
